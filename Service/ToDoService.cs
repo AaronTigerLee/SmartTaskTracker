@@ -12,13 +12,28 @@ namespace SmartTaskTracker.Service
     public class ToDoService
     {
         private readonly HttpClient _httpClient;
-        private const string apiUrl = "http://localhost:____/api/tasks";
+        private const string apiUrl = "http://localhost:5257/api/ToDos";
         // Will change everytime api is brought down / brought back up
 
         public ToDoService()
         {
             _httpClient = new HttpClient();
         }
+        List<ToDo> toDoList = new();
+
+        //public async Task<List<ToDo>> GetToDos()
+        //{
+        //    if (toDoList?.Count > 0)
+        //    {
+        //        return toDoList;
+        //    }
+        //    var response = await _httpClient.GetAsync(apiUrl);
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        toDoList = await response.Content.ReadFromJsonAsync<List<ToDo>>();
+        //    }
+        //    return toDoList;
+        //}
 
         public async Task<List<ToDo>> GetToDosAsync()
             => await _httpClient.GetFromJsonAsync<List<ToDo>>(apiUrl) ?? new List<ToDo>();

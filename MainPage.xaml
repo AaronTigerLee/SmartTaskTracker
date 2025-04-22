@@ -7,34 +7,38 @@
              x:DataType="viewmodel:ToDosViewModel"
              Title="{Binding Title}">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a hovercraft number nine" />
 
-            <Label
-                Text="Hello, World!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
-
-            <Label
-                Text="Welcome to &#10;.NET Multi-platform App UI"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
-        </VerticalStackLayout>
-    </ScrollView>
-
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*, 100" RowSpacing="1">
+        <CollectionView x:Name="ToDosCollection" BackgroundColor="AliceBlue" Grid.ColumnSpan="2"
+                        ItemsSource="{Binding ToDos}" SelectionMode="Single" SelectionChanged="OnToDoSelected">
+            <CollectionView.EmptyView>
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center"
+                             WidthRequest="200" HeightRequest="200">
+                </StackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:ToDo">
+                    <Grid Padding="10">
+                        <Border HeightRequest="125" Padding="0">
+                            <!--<Border.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command=""
+                            </Border.GestureRecognizers>-->
+                            <Grid Padding="0" ColumnDefinitions="125,*">
+                                <VerticalStackLayout Grid.Column="1" Padding="10" VerticalOptions="Center">
+                                    <Label Text="{Binding Id}"/>
+                                    <Label Text="{Binding Name}"/>
+                                    <Label Text="{Binding Description}"/>
+                                    <Label Text="{Binding DueDate}"/>
+                                    <Label Text="{Binding Priority}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Get Tasks" Grid.Row="1" Margin="10" Command="{Binding GetToDosCommand}" IsEnabled="{Binding IsNotBusy}"/>
+        <!--<Button Text="Create New Task" Grid.Row="1" Margin="10" Command="{Binding }"-->
+    </Grid>
 </ContentPage>

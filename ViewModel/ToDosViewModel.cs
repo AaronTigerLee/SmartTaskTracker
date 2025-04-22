@@ -40,7 +40,7 @@ namespace SmartTaskTracker.ViewModel
                 {
                     ToDos.Clear();
                 }
-                foreach (var toDo in toDos) { toDos.Add(toDo); }
+                foreach (var toDo in toDos) { ToDos.Add(toDo); }
             }
             catch (Exception ex)
             {
