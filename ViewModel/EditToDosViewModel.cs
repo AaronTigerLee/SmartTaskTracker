@@ -43,8 +43,9 @@ namespace SmartTaskTracker.ViewModel
 			var json = JsonSerializer.Serialize(ToDo);
 			var content = new StringContent(json, Encoding.UTF8, "application/json");
 			var httpClient = new HttpClient();
+			string url = "http://localhost:5257/api/ToDos/" + _toDo.Id;
 
-			var response = await httpClient.PutAsync("http://localhost:5257/api/ToDos/{_toDo.Id}", content);
+			var response = await httpClient.PutAsync(url, content);
 
 			if (response.IsSuccessStatusCode)
 			{
