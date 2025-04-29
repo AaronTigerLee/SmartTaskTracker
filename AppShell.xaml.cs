@@ -1,11 +1,20 @@
-﻿namespace SmartTaskTracker
+﻿using SmartTaskTracker.Model;
+
+namespace SmartTaskTracker
 {
     public partial class AppShell : Shell
     {
         public AppShell()
         {
             InitializeComponent();
-            // Routing.RegisterRoute(nameof(DetailsPage), typeof(Details))
+            RegisterRoutes();
+        }
+
+        private void RegisterRoutes()
+        {
+            Routing.RegisterRoute(nameof(EditToDoPage), typeof(EditToDoPage));
+            Routing.RegisterRoute(nameof(AddToDoPage), typeof(AddToDoPage));
+            Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
         }
     }
 }

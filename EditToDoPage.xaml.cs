@@ -4,18 +4,32 @@ using SmartTaskTracker.Model;
 using SmartTaskTracker.ViewModel;
 using System.Text;
 using System.Threading.Tasks;
+using SmartTaskTracker.Service;
 
 namespace SmartTaskTracker;
 
+[QueryProperty(nameof(ToDoId), "id")]
 public partial class EditToDoPage : ContentPage
 {
-	// private ToDo _toDo;
-	public EditToDoPage(ToDo toDo)
+    private int _toDoId;
+    public int ToDoId
+    {
+        get => _toDoId;
+        set
+        {
+            _toDoId = value;
+            LoadToDo();
+        }
+    }
+	private readonly EditToDosViewModel _viewModel;
+	public EditToDoPage(EditToDosViewModel vm)
 	{
 		InitializeComponent();
 
-		// This binding context for MVVM. Data manipulation WITHOUT MVVM shown below.
-		BindingContext = new EditToDosViewModel(toDo);
+
+        // This binding context for MVVM. Data manipulation WITHOUT MVVM in comments below.
+        _viewModel = vm;
+        BindingContext = _viewModel;
 
         //	_toDo = toDo;
 
@@ -53,4 +67,30 @@ public partial class EditToDoPage : ContentPage
         //		await DisplayAlert("Error", "Failed to update task...", "OK");
         //	}
     }
+
+    private void LoadToDo()
+    {
+        if (_toDoId > 0)
+        {
+            _viewModel.LoadToDoById(_toDoId);
+        }
+
+        BindingContext = null;
+        BindingContext = _viewModel;
+
+    }
+
+    //public void ApplyQueryAttributes(IDictionary<string, object> query)
+    //{
+    //    if (query.ContainsKey("Id"))
+    //    {
+    //        int id = int.Parse(query["Id"].ToString());
+    //        _viewModel.LoadToDoById(id);
+
+    //    }
+    //}
+
+    // Since a Task ID is passed through routing, we need to define a method that will allow the
+    // EditToDoPage to receive information via ID from the API
+
 }

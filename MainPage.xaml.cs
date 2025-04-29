@@ -5,22 +5,24 @@ namespace SmartTaskTracker
 {
     public partial class MainPage : ContentPage
     {
-
-        public MainPage(ToDosViewModel vm)
+        private readonly MainPageViewModel _viewModel;
+        public MainPage(MainPageViewModel viewModel)
         {
             InitializeComponent();
-            BindingContext = vm;
+            _viewModel = viewModel;
+            BindingContext = _viewModel;
         }
 
         private async void OnToDoSelected(object sender, SelectionChangedEventArgs e)
         {
             var selectedToDo = e.CurrentSelection.FirstOrDefault() as ToDo;
-            if (selectedToDo == null) return;
+            if (selectedToDo == null)
+                return;
+            _viewModel.EditToDoCommand.Execute(selectedToDo);
 
-            await Navigation.PushAsync(new EditToDoPage(selectedToDo));
-
-            ToDosCollection.SelectedItem = null;
+            ((CollectionView)sender).SelectedItem = null;
         }
+
 
     }
 

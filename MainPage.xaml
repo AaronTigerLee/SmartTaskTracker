@@ -4,7 +4,7 @@
              x:Class="SmartTaskTracker.MainPage"
              xmlns:model="clr-namespace:SmartTaskTracker.Model"
              xmlns:viewmodel="clr-namespace:SmartTaskTracker.ViewModel"
-             x:DataType="viewmodel:ToDosViewModel"
+             x:DataType="viewmodel:MainPageViewModel"
              Title="{Binding Title}">
 
 
@@ -20,10 +20,6 @@
                 <DataTemplate x:DataType="model:ToDo">
                     <Grid Padding="10">
                         <Border HeightRequest="125" Padding="0">
-                            <!--<Border.GestureRecognizers>
-                                <TapGestureRecognizer CommandParameter="{Binding .}"
-                                                      Command=""
-                            </Border.GestureRecognizers>-->
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <VerticalStackLayout Grid.Column="1" Padding="10" VerticalOptions="Center">
                                     <Label Text="{Binding Id}"/>
@@ -39,6 +35,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         <Button Text="Get Tasks" Grid.Row="1" Margin="10" Command="{Binding GetToDosCommand}" IsEnabled="{Binding IsNotBusy}"/>
+        <Button Text="Add Task" Grid.Row="1" Grid.Column="1" Margin="10" Command="{Binding AddToDoCommand}" IsEnabled="{Binding IsNotBusy}" />
         <!--<Button Text="Create New Task" Grid.Row="1" Margin="10" Command="{Binding }"-->
     </Grid>
 </ContentPage>

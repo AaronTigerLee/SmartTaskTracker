@@ -13,6 +13,7 @@ namespace SmartTaskTracker.ViewModel
 {
 	public class EditToDosViewModel : BaseViewModel
 	{
+		private ToDoService _toDoService;
 		private ToDo _toDo;
 		public ToDo ToDo
 		{
@@ -32,11 +33,33 @@ namespace SmartTaskTracker.ViewModel
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		public EditToDosViewModel(ToDo toDo)
+		public EditToDosViewModel(ToDoService toDoService)
 		{
-			ToDo = toDo;
+			_toDoService = toDoService;
 			SaveCommand = new Command(async () => SaveChanges());
 		}
+
+		public async void LoadToDoById(int id)
+		{
+			try
+			{
+				var toDo = await _toDoService.GetToDoAsync(id);
+				if (toDo != null)
+				{
+					ToDo = toDo;
+					await Application.Current.MainPage.DisplayAlert("Debug", $"Loaded ToDo Name: {ToDo?.Name}", "OK");
+				}
+				else
+				{
+					await Application.Current.MainPage.DisplayAlert("Error", "Task not found...", "OK");
+				}
+			}
+			catch (Exception ex)
+			{
+				await Application.Current.MainPage.DisplayAlert("Error", $"Failed to load Task. {ex.Message}", "OK");
+			}
+		}
+
 
 		private async Task SaveChanges()
 		{
@@ -58,9 +81,6 @@ namespace SmartTaskTracker.ViewModel
 			}
 
 		}
-
-		protected void OnPropertyChanged([CallerMemberName] string name = null) =>
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         
 	}
 }

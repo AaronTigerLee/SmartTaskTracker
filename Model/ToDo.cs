@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,16 +13,123 @@ namespace SmartTaskTracker.Model
     {
         Low, Medium, High
     }
-    public class ToDo
+    public class ToDo : INotifyPropertyChanged
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public DateTime DueDate { get; set; }
-        public Priority Priority { get; set; }
-        public int? IsCompleted { get; set; }
-        public DateTime? Completion { get; set; }
-        public DateTime? Creation { get; set; }
+        [Key]
+        private int _id;
+        public int Id 
+        { 
+            get => _id;
+            set
+            {
+                if (_id != value)
+                {
+                    _id = value;
+                    OnPropertyChanged();
+                }
+            }
+
+        }
+        private string _name;
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                if (_name != value)
+                {
+                    _name = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+   
+        private string _description;
+        public string Description
+        {
+            get => _description;
+            set
+            {
+                if (_description != value)
+                {
+                    _description = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private DateTime _dueDate;
+        public DateTime DueDate
+        {
+            get => _dueDate;
+            set
+            {
+                if (_dueDate != value)
+                {
+                    _dueDate = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private Priority _priority;
+        public Priority Priority
+        {
+            get => _priority;
+            set
+            {
+                if (_priority != value)
+                {
+                    _priority = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private int? _isCompleted;
+        public int? IsCompleted
+        {
+            get => _isCompleted;
+            set
+            {
+                if (_isCompleted != value)
+                {
+                    _isCompleted = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private DateTime? _completion;
+        public DateTime? Completion
+        {
+            get => _completion;
+            set
+            {
+                if (_completion != value)
+                {
+                    _completion = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private DateTime? _creation;
+        public DateTime? Creation
+        {
+            get => _creation;
+            set
+            {
+                if (_creation != value)
+                {
+                    _creation = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         // add foreign key referencing user IDs once auth is implemented.
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
