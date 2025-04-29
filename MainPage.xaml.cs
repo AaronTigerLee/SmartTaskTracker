@@ -13,6 +13,12 @@ namespace SmartTaskTracker
             BindingContext = _viewModel;
         }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            _viewModel.GetToDosCommand.Execute(null);
+        }
+
         private async void OnToDoSelected(object sender, SelectionChangedEventArgs e)
         {
             var selectedToDo = e.CurrentSelection.FirstOrDefault() as ToDo;

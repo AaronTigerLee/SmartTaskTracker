@@ -47,7 +47,8 @@ namespace SmartTaskTracker.ViewModel
 				if (toDo != null)
 				{
 					ToDo = toDo;
-					await Application.Current.MainPage.DisplayAlert("Debug", $"Loaded ToDo Name: {ToDo?.Name}", "OK");
+					// Debugging...
+					// await Application.Current.MainPage.DisplayAlert("Debug", $"Loaded ToDo Name: {ToDo?.Name}", "OK");
 				}
 				else
 				{

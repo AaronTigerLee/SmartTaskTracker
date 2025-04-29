@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using SmartTaskTracker.Model;
 using SmartTaskTracker.Service;
-using Windows.Security.Cryptography.Core;
+// using Windows.Security.Cryptography.Core;
 using System.Text.Json;
 
 namespace SmartTaskTracker.ViewModel;
@@ -49,12 +49,13 @@ public class AddToDosViewModel : BaseViewModel
 
         var success = await _toDoService.CreateToDoAsync(NewToDo);
 
-        //debugging...
-        var json = JsonSerializer.Serialize(NewToDo, new JsonSerializerOptions { WriteIndented = true });
-        await Application.Current.MainPage.DisplayAlert("JSON Sent: ", json, "OK");
+        // debugging...
+        // var json = JsonSerializer.Serialize(NewToDo, new JsonSerializerOptions { WriteIndented = true });
+        // await Application.Current.MainPage.DisplayAlert("JSON Sent: ", json, "OK");
 
         if (success)
         {
+            await Application.Current.MainPage.DisplayAlert("Success", "Task created successfully!", "OK");
             await Shell.Current.GoToAsync("..");
         }
         else
