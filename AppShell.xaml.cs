@@ -1,6 +1,4 @@
-﻿using SmartTaskTracker.Model;
-
-namespace SmartTaskTracker
+﻿namespace SmartTaskTracker
 {
     public partial class AppShell : Shell
     {

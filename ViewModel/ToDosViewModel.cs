@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
 using SmartTaskTracker.Model;
 using SmartTaskTracker.Service;
 
 namespace SmartTaskTracker.ViewModel
 {
-    public partial class ToDosViewModel:BaseViewModel
+    public partial class ToDosViewModel : BaseViewModel
     {
         ToDoService toDoService;
         IConnectivity connectivity;

@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SmartTaskTracker.Model;
-using SmartTaskTracker.Service;
-using CommunityToolkit.Mvvm.ComponentModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace SmartTaskTracker.ViewModel
 {
-    public partial class BaseViewModel: ObservableObject, INotifyPropertyChanged
+    public partial class BaseViewModel : ObservableObject, INotifyPropertyChanged
     {
         public BaseViewModel() { }
 

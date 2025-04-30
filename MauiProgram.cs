@@ -18,7 +18,7 @@ namespace SmartTaskTracker
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
             // If the API is hosted on the actual internet...
             builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
 

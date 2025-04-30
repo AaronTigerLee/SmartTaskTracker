@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace SmartTaskTracker.Model
 {
@@ -18,8 +13,8 @@ namespace SmartTaskTracker.Model
     {
         [Key]
         private int _id;
-        public int Id 
-        { 
+        public int Id
+        {
             get => _id;
             set
             {
@@ -44,7 +39,7 @@ namespace SmartTaskTracker.Model
                 }
             }
         }
-   
+
         private string _description;
         public string Description
         {

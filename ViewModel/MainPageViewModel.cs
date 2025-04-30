@@ -1,7 +1,6 @@
 using System.Collections.ObjectModel;
 using SmartTaskTracker.Model;
 using SmartTaskTracker.Service;
-using SmartTaskTracker.ViewModel;
 
 namespace SmartTaskTracker.ViewModel;
 
@@ -68,14 +67,18 @@ public class MainPageViewModel : BaseViewModel
             var toDos = await _toDoService.GetToDosAsync();
             ToDos.Clear();
 
-            foreach (var toDo in toDos)
+            // adds tasks based on filter, and sorted by due date
+            var sorted = toDos
+                .Where(todo => (ShowCompleted && todo.IsCompleted == 1) ||
+                               (!ShowCompleted && todo.IsCompleted == 0))
+                .OrderBy(todo => todo.DueDate)
+                .ToList();
+
+
+            foreach (var toDo in sorted)
             {
                 // Adds tasks that match the filter conditions (complete / incomplete)
-                if ((ShowCompleted && toDo.IsCompleted == 1) ||
-                    (!ShowCompleted && toDo.IsCompleted == 0))
-                {
                     ToDos.Add(toDo);
-                }
             }
         }
         catch (Exception ex)

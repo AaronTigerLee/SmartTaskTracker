@@ -1,10 +1,5 @@
-using System.Text.Json;
-using SmartTaskTracker.Model;
 //using WinRT.SmartTaskTrackerVtableClasses;
 using SmartTaskTracker.ViewModel;
-using System.Text;
-using System.Threading.Tasks;
-using SmartTaskTracker.Service;
 
 namespace SmartTaskTracker;
 
@@ -21,10 +16,10 @@ public partial class EditToDoPage : ContentPage
             LoadToDo();
         }
     }
-	private readonly EditToDosViewModel _viewModel;
-	public EditToDoPage(EditToDosViewModel vm)
-	{
-		InitializeComponent();
+    private readonly EditToDosViewModel _viewModel;
+    public EditToDoPage(EditToDosViewModel vm)
+    {
+        InitializeComponent();
 
 
         // This binding context for MVVM. Data manipulation WITHOUT MVVM in comments below.

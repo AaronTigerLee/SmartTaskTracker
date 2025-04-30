@@ -2,7 +2,6 @@ using System.Collections.ObjectModel;
 using SmartTaskTracker.Model;
 using SmartTaskTracker.Service;
 // using Windows.Security.Cryptography.Core;
-using System.Text.Json;
 
 namespace SmartTaskTracker.ViewModel;
 

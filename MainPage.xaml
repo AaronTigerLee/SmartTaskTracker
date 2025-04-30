@@ -9,40 +9,35 @@
              Title="Tasks List">
 
 
-    <VerticalStackLayout Padding="20" Spacing="10">
-        <Button Text="{Binding ShowCompleted, Converter={StaticResource CompletedFilterTextConverter}}"
-                Command="{Binding ToggleFilterCommand}" />
-        <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*, 100" RowSpacing="1">
-
-            <CollectionView x:Name="ToDosCollection" BackgroundColor="AliceBlue" Grid.ColumnSpan="2"
+    
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*, 100" RowSpacing="1">
+        
+        <CollectionView x:Name="ToDosCollection" BackgroundColor="AliceBlue" Grid.ColumnSpan="2"
                         ItemsSource="{Binding ToDos}" SelectionMode="Single" SelectionChanged="OnToDoSelected">
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:ToDo">
-                        <Grid Padding="10">
-                            <Border HeightRequest="150" Padding="0">
-                                <Grid Padding="0" ColumnDefinitions="Auto,*,Auto">
-                                    <CheckBox IsChecked="{Binding Completed, Mode=TwoWay}" 
-                                              CheckedChanged="CheckBox_CheckedChanged" 
-                                              Grid.Column="0"/>
-                                    <VerticalStackLayout Grid.Column="1" Padding="10" VerticalOptions="Center">
-                                        <Label Text="{Binding Name}"/>
-                                        <Label Text="{Binding Description}"/>
-                                        <Label Text="{Binding DueDate}"/>
-                                        <Label Text="{Binding Priority}"/>
-                                    </VerticalStackLayout>
-                                    <Button Text="Delete" 
-                                            Command="{Binding Path=BindingContext.DeleteToDoCommand, Source={x:Reference MainPageXaml}}"
-                                            CommandParameter="{Binding .}" 
-                                            Grid.Column="2"/>
-                                </Grid>
-                            </Border>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <!-- <Button Text="Get Tasks" Grid.Row="1" Margin="10" Command="{Binding GetToDosCommand}" IsEnabled="{Binding IsNotBusy}"/> -->
-            <Button Text="Add Task" Grid.Row="1" Margin="10" Command="{Binding AddToDoCommand}" IsEnabled="{Binding IsNotBusy}" />
-        </Grid>
-    </VerticalStackLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:ToDo">
+                    <Grid Padding="10" ColumnDefinitions="Auto,*,Auto">
+                        <CheckBox IsChecked="{Binding Completed, Mode=TwoWay}" 
+                                      CheckedChanged="CheckBox_CheckedChanged" 
+                                      Grid.Column="0"/>
+                        <VerticalStackLayout Grid.Column="1" Padding="10" VerticalOptions="Center">
+                            <Label Text="{Binding Name}"/>
+                            <Label Text="{Binding Description}"/>
+                            <Label Text="{Binding DueDate}"/>
+                            <Label Text="{Binding Priority}"/>
+                        </VerticalStackLayout>
+                        <Button Text="Delete" 
+                                Command="{Binding Path=BindingContext.DeleteToDoCommand, Source={x:Reference MainPageXaml}}"
+                                CommandParameter="{Binding .}" 
+                                Grid.Column="2"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <!-- <Button Text="Get Tasks" Grid.Row="1" Margin="10" Command="{Binding GetToDosCommand}" IsEnabled="{Binding IsNotBusy}"/> -->
+        <Button Text="Add Task" Grid.Row="1" Margin="10" Command="{Binding AddToDoCommand}" IsEnabled="{Binding IsNotBusy}" />
+        <Button Text="{Binding ShowCompleted, Converter={StaticResource CompletedFilterTextConverter}}"
+                Margin="10" Grid.Row="1" Grid.Column="1"
+                Command="{Binding ToggleFilterCommand}" />
+    </Grid>
 </ContentPage>
