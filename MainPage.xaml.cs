@@ -29,6 +29,18 @@ namespace SmartTaskTracker
             ((CollectionView)sender).SelectedItem = null;
         }
 
+        private async void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            var checkbox = (CheckBox)sender;
+            var todo = (ToDo)checkbox.BindingContext;
+
+            if (todo != null)
+            {
+                var vm = (MainPageViewModel)BindingContext;
+                await vm.MarkToDoCompletedAsync(todo);
+            }
+        }
+
 
     }
 

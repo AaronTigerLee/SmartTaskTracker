@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace SmartTaskTracker.Model
@@ -84,8 +85,8 @@ namespace SmartTaskTracker.Model
             }
         }
 
-        private int? _isCompleted;
-        public int? IsCompleted
+        private int _isCompleted = 0;
+        public int IsCompleted
         {
             get => _isCompleted;
             set
@@ -97,6 +98,20 @@ namespace SmartTaskTracker.Model
                 }
             }
         }
+
+        // Used just for within this app
+        [JsonIgnore]
+        public bool Completed
+        {
+            get => IsCompleted == 1;
+            set
+            {
+                IsCompleted = value ? 1 : 0;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsCompleted));
+            }
+        }
+
         private DateTime? _completion;
         public DateTime? Completion
         {

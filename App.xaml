@@ -5,6 +5,7 @@
              x:Class="SmartTaskTracker.App">
     <Application.Resources>
         <ResourceDictionary>
+            <local:CompletedFilterTextConverter x:Key="CompletedFilterTextConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />

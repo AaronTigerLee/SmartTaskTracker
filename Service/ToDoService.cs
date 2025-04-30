@@ -53,7 +53,7 @@ namespace SmartTaskTracker.Service
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> DeleteUserAsync(int id)
+        public async Task<bool> DeleteToDoAsync(int id)
         {
             var response = await _httpClient.DeleteAsync($"{apiUrl}/{id}");
             return response.IsSuccessStatusCode;
